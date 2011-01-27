@@ -4,9 +4,9 @@
 $dbms = 'mysqli';
 $dbhost = 'localhost';
 $dbport = '';
-$dbname = 'swtor_phpbb3';
-$dbuser = 'magnify';
-$dbpasswd = 'Stufre14';
+$dbname = 'magnify_swtor_drupal';
+$dbuser = 'swtor';
+$dbpasswd = 'swtor';
 $table_prefix = 'phpbb_';
 $acm_type = 'file';
 $load_extensions = '';
