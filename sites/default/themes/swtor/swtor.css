@@ -1488,10 +1488,12 @@ Featured content
   color: #fff;
   right: 0;
   min-height: 60px;
+  min-width: 325px;
+  max-width: 300px;
+  *width: 300px;
   padding: 0;
   position: absolute;
   top: 35px;
-  min-width: 325px;
 }
 
 .view-featured-content .content a {
