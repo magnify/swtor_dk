@@ -1,0 +1,70 @@
+<?php
+// $Id: phpbbforum.install,v 1.7 2009/12/27 13:34:52 vb Exp $
+/**
+ * Copyright (C) 2007-2008 by Vadim G.B. (http://vgb.org.ru)
+ */
+
+/**
+ * Implementation of hook_install().
+ */
+function phpbbforum_install() {
+  drupal_install_schema('phpbbforum');
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function phpbbforum_uninstall() {
+
+  drupal_uninstall_schema("phpbbforum");
+  // Delete all the phpbbforum variables and then clear the variable cache
+  db_query("DELETE FROM {variable} WHERE name LIKE 'phpbbforum_%'");
+  cache_clear_all('variables', 'cache');  
+  drupal_set_message(t('phpBBforum module uninstalled successfully.'));
+}
+
+/**
+ * This update creates the table 
+ * which is needed for the drupal2phpbb feature
+ */
+function phpbbforum_update_6000() {
+  
+  $ret = array();
+   // New table to buffer mail messages during sending
+  db_create_table($ret, 'drupal2phpbb', _phpbbforum_schema_drupal2phpbb());
+  
+  return $ret;
+   
+}
+
+function phpbbforum_schema() {
+  $schema = array();
+  $schema['drupal2phpbb'] = _phpbbforum_schema_drupal2phpbb();
+  return $schema;
+}
+ 
+function _phpbbforum_schema_drupal2phpbb() {
+
+  $schema = array(
+    'description' => t('Mapping table for phpbbtopics created in via drupal'),
+    'fields' => array(
+			'node_id' => array(
+                'description' => t('References the drupal node id'),
+                'type' => 'int',
+                'unsigned' => TRUE,
+                'not null' => TRUE),
+			'topic_id' => array(
+                'description' => t('References the phpbb topic id'),
+                'type' => 'int',
+                'unsigned' => TRUE,
+                'not null' => TRUE),
+			'linked' => array(
+                'description' => t('Shall a comment-link be added to the node?'),
+                'type' => 'int',
+                'unsigned' => TRUE,
+                'not null' => TRUE)),
+ 			'primary key' => array('node_id', 'topic_id'),
+  );
+  
+  return $schema;
+}
