@@ -1,4 +1,4 @@
-// $Id: README.txt,v 1.4.2.4 2010/09/23 19:26:46 hass Exp $
+// $Id: README.txt,v 1.7.2.3 2010/06/03 01:40:24 hass Exp $
 
 Module: Google Analytics
 Author: Alexander Hass <http://drupal.org/user/85918>
