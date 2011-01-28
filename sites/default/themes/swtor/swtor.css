@@ -115,7 +115,7 @@ fieldset.captcha img {
 
 /** header **/
 #header {
-	height: 147px;
+	height: 175px;
 	position: relative;
 }
 
@@ -124,7 +124,7 @@ fieldset.captcha img {
 
 #logo-title /* Wrapper for logo, website name, and slogan */ {
 	float: left;
-	margin: 0;
+	margin: 25px 0 0;
 	width: 280px;
 }
 
@@ -171,7 +171,7 @@ h1#site-name, div#site-name /* The name of the website */
 	margin: 0;
 	position: absolute;
 	right: 60px;
-	top: 117px;
+	top: 147px;
 }
 
 #header-blocks #block-menu-menu-mainmenu ul.menu {
