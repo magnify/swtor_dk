@@ -1373,14 +1373,13 @@ Featured content
 .view-featured-content .views_slideshow_singleframe_pager,
 .view-featured-content .views_slideshow_controls {
   position: absolute;
-  z-index: 6;
+  z-index: 7;
 }
 
 .view-featured-content .views_slideshow_controls {
   bottom: 20px;
   height: 35px;
   left: 0;
-  z-index: 99;
   width: 647px;
 }
 
@@ -1397,7 +1396,6 @@ Featured content
   outline: 0;
   overflow: hidden;
   position: absolute;
-  z-index: 99;
 }
 
 .view-featured-content .views_slideshow_slide {
