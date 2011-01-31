@@ -1380,6 +1380,7 @@ Featured content
   bottom: 20px;
   height: 35px;
   left: 0;
+  z-index: 99;
   width: 647px;
 }
 
@@ -1396,6 +1397,7 @@ Featured content
   outline: 0;
   overflow: hidden;
   position: absolute;
+  z-index: 99;
 }
 
 .view-featured-content .views_slideshow_slide {
