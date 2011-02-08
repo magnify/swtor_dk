@@ -616,16 +616,49 @@ ul.links.inline {
 	padding: 15px 0 0;
 }
 
-ul.links li {
-  background-color: #1c1f27;
+ul.links li,
+.forum-links li {
+  background-color: #0b3853;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   border-radius: 4px;
-  border: 1px solid #2e2f34;
+  border: 1px solid #011420;
   display: inline;
 	list-style-type: none;
   margin: 5px;
   padding: 3px 8px;
+}
+
+ul.links li a,
+ul.links li a:hover,
+.forum-links li a,
+.forum-links li a:hover,
+ul.links li span {
+  color: #68a7cd;
+  font-size: 90%;
+  text-shadow: 1px 1px #031d2d;
+}
+
+ul.links li.statistics_counter {
+  background-color: transparent;
+  border: 0;
+}
+
+ul.links li.statistics_counter a,
+ul.links li.statistics_counter a:hover,
+.forum-links li.statistics_counter a,
+.forum-links li.statistics_counter a:hover,
+ul.links li.statistics_counter span {
+  color: #999;
+  text-shadow: 0 0;
+}
+
+ul.forum-links {
+  margin: 10px 0;
+}
+
+.forum-links li {
+  margin: 5px 0;
 }
 
 .preview .node /* Preview of the content before submitting new or updated content */
@@ -1568,4 +1601,62 @@ Featured content
   position: absolute;
   left: 537px;
   top: 12px;
+}
+
+/*
+  Pager
+*/
+
+.item-list {
+  list-style: none;
+}
+
+.pager.item-list li {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+.pager .pager-item a,
+.pager .pager-item a:link,
+.pager .pager-item a:visited
+.pager .pager-first a,
+.pager .pager-first a:link,
+.pager .pager-first a:visited,
+.pager .pager-previous a,
+.pager .pager-previous a:link,
+.pager .pager-previous a:visited,
+.pager .pager-next a,
+.pager .pager-next a:link,
+.pager .pager-next a:visited,
+.pager .pager-last a,
+.pager .pager-last a:link,
+.pager .pager-last a:visited {
+  border: 1px solid #0b3853;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  color: #68a7cd !important;
+  padding: 3px 6px;
+  text-decoration: none !important;
+}
+
+.pager .pager-item a:hover,
+.pager .pager-first a:hover,
+.pager .pager-previous a:hover,
+.pager .pager-next a:hover,
+.pager .pager-last a:hover {
+  background-color: #0b3853;
+  color: #68a7cd !important;
+}
+
+.item-list .pager .pager-current {
+  background-color: #0b3853;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  color: #68a7cd;
+  *margin: 0 4px 0 0;
+  padding: 4px 7px;
+  *padding: 4px 3px 4px 7px;
 }
