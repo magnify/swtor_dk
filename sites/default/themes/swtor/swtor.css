@@ -1636,7 +1636,9 @@ Featured content
 .pager .pager-next a:visited,
 .pager .pager-last a,
 .pager .pager-last a:link,
-.pager .pager-last a:visited {
+.pager .pager-last a:visited,a
+#forum .pager li.pager-current,
+#forum-comments .pager li.pager-current {
   border: 1px solid #0b3853;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -1655,7 +1657,9 @@ Featured content
   color: #68a7cd !important;
 }
 
-.item-list .pager .pager-current {
+.item-list .pager .pager-current,
+#forum .pager a.active,
+#forum-comments .pager a.active {
   background-color: #0b3853;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -1664,6 +1668,13 @@ Featured content
   *margin: 0 4px 0 0;
   padding: 4px 7px;
   *padding: 4px 3px 4px 7px;
+}
+
+#forum .pager a:link,
+#forum .pager a:visited,
+#forum-comments .pager a:link,
+#forum-comments .pager a:visited {
+  border: 1px solid #0b3853;
 }
 
 .quote-msg {
