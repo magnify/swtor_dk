@@ -1660,3 +1660,8 @@ Featured content
   padding: 4px 7px;
   *padding: 4px 3px 4px 7px;
 }
+
+.quote-msg {
+  background-color: #333333;
+  border: 1px solid #666666;
+}
