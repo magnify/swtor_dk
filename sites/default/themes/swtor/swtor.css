@@ -625,7 +625,7 @@ ul.links li {
   display: inline;
 	list-style-type: none;
   margin: 5px;
-  padding: 2px 4px;
+  padding: 3px 8px;
 }
 
 .preview .node /* Preview of the content before submitting new or updated content */
@@ -725,13 +725,18 @@ ul.links li {
 {
 }
 
-.comment .user-signature /* The user's signature */
-{
+.comment .user-signature,
+.comment .author-signature {
 	background: url('/sites/default/themes/swtor/gfx/DashedHori.png') repeat-x top left;
   color: #666;
   font-size: 90%;
   margin: 15px 0 0;
   padding: 5px;
+}
+
+.forum-post .author-signature {
+  margin: 15px 10px 0;
+  padding: 10px;
 }
 
 .comment div.links /* Wrapper for comment links. See also the ul.links declaration in the node section above. */ {
@@ -1295,14 +1300,20 @@ ul.primary li.active a .tab, ul.primary li.active a:hover .tab {
 .forum-post div {
 }
 
+.forum-jump-links,
+.forum-post-links {
+  padding: 8px;
+}
+
 .post-info {
 	background-color: #0d0d0d;
-	border-bottom: 1px solid #1c140d;
+	border-bottom: 1px solid #202020;
 	padding: 5px;
 }
 
 .author-pane-top {
 	height: auto;
+  overflow: hidden;
 }
 
 .author-pane-section {
@@ -1330,6 +1341,29 @@ ul.primary li.active a .tab, ul.primary li.active a:hover .tab {
 
 .forum-post-panel-sub {
 	background-color: #0a0a0a;
+}
+
+/*
+  Forum not stacked
+*/
+
+.forum-post {
+  background-color: #0a0a0a;
+  border: 1px solid #202020;
+}
+
+.forum-post-wrapper,
+.forum-post-panel-main,
+.forum-post-footer,
+.forum-post-links {
+  background-color: #0a0a0a;
+  border-color: #202020;
+}
+
+.forum-post-panel-main {
+  border-bottom: 0;
+  border-top: 0;
+  min-height: 200px;
 }
 
 /* General */
