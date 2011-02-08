@@ -503,7 +503,8 @@ div.tabs /* See also the tabs.css file. */
 }
 
 .front #content .node-type-article-with-image .content, .not-front.not-logged-in #content .node-type-article-with-image .content, .not-front #content .node-type-article-with-image .content {
-	width: 625px;
+  margin: 10px 0 0;
+  width: 625px;
 }
 
 .front.two-sidebars #content .node .content, .not-front.two-sidebars #content .node .content {
@@ -543,7 +544,6 @@ div.tabs /* See also the tabs.css file. */
 }
 
 #content .node-type-article-with-image .meta .submitted {
-	background: url('/sites/default/themes/swtor/gfx/DashedHori.png') repeat-x bottom left;
 	margin: 0 10px;
 	padding: 15px 0;
 }
@@ -616,11 +616,16 @@ ul.links.inline {
 	padding: 15px 0 0;
 }
 
-ul.links li
-{
-	display: inline;
+ul.links li {
+  background-color: #1c1f27;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  border: 1px solid #2e2f34;
+  display: inline;
 	list-style-type: none;
-	padding: 0 0.5em;
+  margin: 5px;
+  padding: 2px 4px;
 }
 
 .preview .node /* Preview of the content before submitting new or updated content */
@@ -635,6 +640,7 @@ ul.links li
 
 .node-type-article-with-image #comments {
 	clear: both;
+  width: 645px;
 }
 
 #comments-title /* Heading for the list of comments */
@@ -721,6 +727,11 @@ ul.links li
 
 .comment .user-signature /* The user's signature */
 {
+	background: url('/sites/default/themes/swtor/gfx/DashedHori.png') repeat-x top left;
+  color: #666;
+  font-size: 90%;
+  margin: 15px 0 0;
+  padding: 5px;
 }
 
 .comment div.links /* Wrapper for comment links. See also the ul.links declaration in the node section above. */ {

@@ -180,11 +180,15 @@ h4, h4 a, h4 a:link, h4 a:visited {
     margin-right: -760px; /* Negative value of #content's width + left margin. */
   }
 
-  #content-inner
-  {
+  #content-inner {
     margin: 0;
-    padding: 0;
+    padding: 0 20px 0 0;
   }
+
+.node-type-article-with-image #content-inner,
+.node-type-page #content-inner {
+  padding: 0 20px 0 0;
+}
 
 /** navbar **/
   #navbar
