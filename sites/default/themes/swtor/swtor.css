@@ -1657,6 +1657,8 @@ Featured content
   color: #68a7cd !important;
 }
 
+#forum .pager a.active,
+#forum-comments .pager a.active,
 .item-list .pager .pager-current,
 #forum .pager a.active,
 #forum-comments .pager a.active {
