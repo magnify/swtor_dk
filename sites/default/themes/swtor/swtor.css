@@ -661,6 +661,11 @@ ul.forum-links {
   margin: 5px 0;
 }
 
+.forum-post-panel-sub .author-pane .picture img {
+  background: #0a0a0a;
+  border: 1px solid #202020;
+}
+
 .preview .node /* Preview of the content before submitting new or updated content */
 {
 /* background-color: #ffffea; */ /* Drupal core uses a #ffffea background */
