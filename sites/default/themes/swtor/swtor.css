@@ -1679,6 +1679,13 @@ Featured content
   border: 1px solid #0b3853;
 }
 
+#forum .pager a:link,
+#forum .pager a:visited,
+#forum-comments .pager a:link,
+#forum-comments .pager a:visited {
+  background: transparent;
+}
+
 .quote-msg {
   background-color: #333333;
   border: 1px solid #666666;
