@@ -1451,7 +1451,7 @@ Featured content
 .view-featured-content .views_slideshow_singleframe_pager,
 .view-featured-content .views_slideshow_controls {
   position: absolute;
-  z-index: 7;
+  z-index: 99;
 }
 
 .view-featured-content .views_slideshow_controls {
