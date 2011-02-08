@@ -267,16 +267,14 @@ h1#site-name, div#site-name /* The name of the website */
 {
 }
 
-#content-header /* Wrapper for breadcrumb, title, messages, tabs, and help */
-{
+#content-header /* Wrapper for breadcrumb, title, messages, tabs, and help */ {
+  padding: 25px 0 0;
 }
 
-.breadcrumb /* The path to the current page in the form of a list of links */
-{
-	left :0;
+.breadcrumb /* The path to the current page in the form of a list of links */ {
 	padding-bottom: 0; /* Undo system.css */
 	position: absolute;
-	top: -15px;
+	top: 15px;
 }
 
 h1.title, /* The title of the page */
