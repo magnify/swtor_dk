@@ -1587,6 +1587,7 @@ Featured content
   color: #fff;
   display: block;
   font-size: 170%;
+  line-height: 110%;
   padding: 20px 10px 10px 20px;
   position: relative;
   text-decoration: none;
@@ -1595,6 +1596,7 @@ Featured content
 
 .view-featured-content .content a p {
   font-size: 65%;
+  line-height: 125%;
   text-transform: none;
 }
 
