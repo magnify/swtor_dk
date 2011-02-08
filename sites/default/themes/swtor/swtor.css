@@ -484,7 +484,7 @@ div.tabs /* See also the tabs.css file. */
 }
 
 #content h1, #content .node-type-article-with-image h2 {
-	margin: 0 0 5px;
+	margin: 0 0 1px;
 }
 
 #content h1, #content .node-type-article-with-image h2, #content .node-type-article-with-image .meta, #content .node-type-article-with-image .content {
@@ -503,7 +503,7 @@ div.tabs /* See also the tabs.css file. */
 }
 
 .front #content .node-type-article-with-image .content, .not-front.not-logged-in #content .node-type-article-with-image .content, .not-front #content .node-type-article-with-image .content {
-  margin: 10px 0 0;
+  margin: 1px 0 0;
   width: 625px;
 }
 
