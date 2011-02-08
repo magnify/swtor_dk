@@ -1636,7 +1636,7 @@ Featured content
 .pager .pager-next a:visited,
 .pager .pager-last a,
 .pager .pager-last a:link,
-.pager .pager-last a:visited,a
+.pager .pager-last a:visited,
 #forum .pager li.pager-current,
 #forum-comments .pager li.pager-current {
   border: 1px solid #0b3853;
