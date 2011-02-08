@@ -547,7 +547,7 @@ div.tabs /* See also the tabs.css file. */
 }
 
 #content .node-type-article-with-image p {
-	margin: 0;
+	margin: 0 0 10px;
 }
 
 /* All nodes are given a node-type-FOO class that describes the type of
