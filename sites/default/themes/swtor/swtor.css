@@ -618,15 +618,15 @@ ul.links.inline {
 
 ul.links li,
 .forum-links li {
-  background-color: #0b3853;
+  background: #5cb441 url('/sites/default/themes/swtor/gfx/button-bg.gif') repeat-x;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   border-radius: 4px;
-  border: 1px solid #011420;
+  border: 1px solid #376b27;
   display: inline;
 	list-style-type: none;
   margin: 5px;
-  padding: 3px 8px;
+  padding: 2px 8px 4px;
 }
 
 ul.links li a,
@@ -634,13 +634,13 @@ ul.links li a:hover,
 .forum-links li a,
 .forum-links li a:hover,
 ul.links li span {
-  color: #68a7cd;
+  color: #fff;
   font-size: 90%;
-  text-shadow: 1px 1px #031d2d;
+  text-shadow: 1px 1px #376b27;
 }
 
 ul.links li.statistics_counter {
-  background-color: transparent;
+  background: transparent;
   border: 0;
 }
 
