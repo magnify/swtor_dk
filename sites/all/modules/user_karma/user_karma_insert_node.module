@@ -1,0 +1,212 @@
+<?php
+// $Id: user_karma_insert_node.module,v 1.3.2.6.2.2 2008/11/26 21:44:58 scor Exp $
+
+/**
+ * @file
+ */
+
+/**
+ * Implementation of hook_help().
+ */
+function user_karma_insert_node_help($path, $arg) {
+  switch ($path) {
+    case 'admin/modules#description':
+      // This description is shown in the listing at admin/modules.
+      return t('User karma - get karma when adding a node.');
+  }
+}
+
+
+/**
+ * Implementation of hook_menu().
+ */
+function user_karma_insert_node_menu() {
+  $items = array();
+
+  $items['admin/settings/user_karma/plugins/user_karma_node_add'] = array(
+    'title' => 'On posting',
+    'description' => 'Settings for the plugin to receive karma when posting a drigg node',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('user_karma_insert_node_admin_settings'),
+    'access callback' => 'user_access',
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_LOCAL_TASK
+  );
+  // That's all!	
+  return $items;
+}
+
+##################################################################
+#                  START OF SETTINGS FORM
+##################################################################
+
+/**
+ * Return the configuration form. It's quite a form...
+ *
+ * @return
+ *   The config form
+ */
+function user_karma_insert_node_admin_settings() {
+
+  $form['user_karma_insert_node_description'] = array(
+    '#value' => '<b>'. t('Award karma every time a user casts posts a node, regardless of how many subsequent votes the post gets. This will encourage users to vote and participate') .'<b>',
+  );
+
+
+  $form['user_karma_insert_node_activate'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Activate this karma method'),
+    '#description' => t('This module will only really do anything when this box is ticket. If you decide to disable it, remember to do a karma mass recalculation'),
+    '#default_value' => variable_get('user_karma_insert_node_activate', FALSE),
+  );
+
+ 
+  $form['user_karma_insert_node_node_types'] = array(
+    '#type' => 'checkboxes',
+    '#title' => t('Node types which will give the creator karma'),
+    '#default_value' => variable_get('user_karma_insert_node_node_types', array()),
+    '#options' => node_get_types('names'),
+  );
+
+  $form['user_karma_insert_node_point_duration'] = array(
+    '#type' => 'textfield',
+    '#title' => t('How many days karma points are valid for. 0 means forever.'),
+    '#size' => 4,
+    '#maxlength' => 4,
+    '#default_value' => variable_get('user_karma_insert_node_point_duration', 90),
+  );
+
+  $form['user_karma_insert_node_karma_multiplier'] = array(
+    '#type' => 'textfield',
+    '#title' => t('How much karma will be assigned for each node'),
+    '#size' => 4,
+    '#maxlength' => 4,
+    '#default_value' => variable_get('user_karma_insert_node_karma_multiplier', 0.1),
+  );
+
+  return system_settings_form($form);
+}
+
+##################################################################
+#               HOOK TO RETURN A KARMA VALUE
+##################################################################
+
+function user_karma_insert_node_user_karma_partial($uid) {
+
+  // If the module is not active, then just always return 0
+  if (!variable_get('user_karma_insert_node_activate', FALSE)) {
+    user_karma_msg("This karma plugin is not active. returning '0'");
+    return 0;
+  }
+
+  user_karma_msg("In 'user_karma_insert_node_user_karma_partial' for $uid");
+
+  // Get the number of days
+  $days = variable_get('user_karma_insert_node_point_duration', 90);
+
+  user_karma_msg("$days");
+
+  $node_types_hash = variable_get('user_karma_insert_node_node_types', '');
+
+ 
+  user_karma_msg("FILTERING by 'node_types'");
+
+  $node_types_array = array();
+  foreach($node_types_hash as $k=>$item){
+    user_karma_msg("TYPE/FLAG PAIR: $k, $item");
+    // If $item is not set, then that entry is set to "0" (off)
+    if ($item) {
+      $node_types_array[] = $k;
+      user_karma_msg("Added Node type: $k");
+    }
+  }
+
+  // There have been no results -- return nothing
+  if (count($node_types_array) == 0) {
+    user_karma_msg("The content_types list is empty, RETURNING 0");
+    return 0;
+  }
+
+  // Set node_types_sql to its FINAL value
+  $res = db_placeholders($node_types_array,'text');
+  $node_types_sql = " AND n.type in ($res) ";
+
+
+  user_karma_msg("Variable node_types_sql is: $node_types_sql");
+
+  // Set the query
+  $query = "SELECT COUNT(*) FROM {node} n WHERE n.uid = %d $node_types_sql ". user_karma_sql_duration($days, "n.created");
+
+  user_karma_msg("Query: $query");
+
+  // Return the value, multiplied by the multiplier!
+  $karma = db_result(
+    db_query(
+      $query, 
+      array_merge( array($uid), $node_types_array)
+    )
+  ) * variable_get('user_karma_insert_node_karma_multiplier', 1);
+
+  user_karma_msg("Returning karma: $karma");
+  return $karma;
+
+}
+
+function user_karma_insert_node_user_karma_point_duration() {
+
+  // If the module is disabled, then return NULL. user_karma will
+  // run array_filter to the invoke_all result, so all the NULLs will
+  // be taken off
+  if (!variable_get('user_karma_insert_node_activate', FALSE)) {
+    return NULL;
+  }
+
+  // Return the module's karma duration
+  return variable_get('user_karma_insert_node_point_duration', 90);
+}
+
+/**
+ * This function is the super-hook for drigg_insert_or_update. If a node is
+ * posted, this function will trigger the karma recalculation.
+ *
+ * @param $node
+ *   The new drigg node that is inserted into the database
+ * @param "insert"
+ *   The value in the drigg module that shows that the drigg node is new, and not updated
+ *   We DON'T want to give karma if a node is simply updated by admin or super user
+ * @return
+ *   The karma amount
+ * 
+ */
+function user_karma_insert_node_nodeapi(&$node, $op, $teaser = NULL, $page = NULL) {
+  #user_karma_msg("In 'user_karma_insert_node_nodeapi': $op");
+
+  // If the module is disabled, then just do nothing.
+  // Note that this could be done a little earlier, but it's just
+  // more convenient to do it here
+  if ( ! variable_get('user_karma_insert_node_activate', FALSE) ) {
+    user_karma_msg("This karma plugin is not active. Not recalculating.");
+    return NULL;
+  }
+
+
+  if ($op != 'insert' && $op != 'update') {
+    #user_karma_msg("op: $op, which is not nor 'insert' nor 'update'");
+    return;
+  }
+
+  if (!in_array($node->type, variable_get('user_karma_insert_node_node_types', array()), TRUE)) {
+    user_karma_msg("node->type is $node->type, aborting");
+    return;
+  }
+
+  if (!$node->status) {
+    user_karma_msg("node is unpublished, aborting");
+    return;
+  }
+
+  $uid = $node->uid;
+  user_karma_msg("Recalculating karma for ". $uid);
+  user_karma_calculate_karma($uid);
+
+}

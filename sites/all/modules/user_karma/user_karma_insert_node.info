@@ -1,0 +1,15 @@
+name = User Karma - give node plugin
+description = Assign karma if a user submits a node
+dependencies[] = user_karma
+dependencies[] = votingapi
+package = User Karma
+core = "6.x"
+project = "user_karma"
+
+
+; Information added by drupal.org packaging script on 2008-11-26
+version = "6.x-1.0-beta1"
+core = "6.x"
+project = "user_karma"
+datestamp = "1227736850"
+

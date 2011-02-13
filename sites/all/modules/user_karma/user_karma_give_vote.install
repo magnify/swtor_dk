@@ -1,0 +1,22 @@
+<?php
+// $Id: user_karma_give_vote.install,v 1.1.2.1.2.1 2008/09/05 09:05:10 sicjoy Exp $
+
+/**
+ * @file
+ */
+
+/*
+ * Implementation of hook_install().
+ */
+function user_karma_give_vote_install() {}
+
+/*
+ * Implementation of hook_uninstall().
+ */
+function user_karma_give_vote_uninstall() {
+  variable_del('user_karma_give_vote_activate');
+  variable_del('user_karma_give_vote_content_types');
+  variable_del('user_karma_give_vote_karma_multiplier');
+  variable_del('user_karma_give_vote_point_duration');
+  variable_del('user_karma_give_vote_value_types');
+}

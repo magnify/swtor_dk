@@ -1,0 +1,13 @@
+name = User Karma - votes on nodes plugin
+description = Assign karma if a node CREATED by the author is voted up/down.
+package = User Karma
+dependencies[] = user_karma
+dependencies[] = votingapi
+core = 6.x
+project = "user_karma"
+; Information added by drupal.org packaging script on 2008-11-26
+version = "6.x-1.0-beta1"
+core = "6.x"
+project = "user_karma"
+datestamp = "1227736850"
+

@@ -1,0 +1,230 @@
+<?php
+// $Id: user_karma_give_vote.module,v 1.7.2.4.2.2 2008/11/26 21:44:58 scor Exp $
+
+/**
+ * @file
+ */
+
+/**
+ * Implementation of hook_help().
+ */
+function user_karma_give_vote_help($path, $arg) {
+  switch ($path) {
+    case 'admin/modules#description':
+      // This description is shown in the listing at admin/modules.
+      return t('User karma - get karma when casting votes');
+  }
+}
+
+/**
+ * Implementation of hook_menu().
+ */
+function user_karma_give_vote_menu() {
+  
+  $items = array();
+
+  // Administration entry. This makes sure the module can be configured
+  // from Drupal's "admin" link
+  $items['admin/settings/user_karma/plugins/user_karma_give_vote'] = array(
+    'title' => 'On voting',
+    'description' => 'Settings for the plugin to receive karma when voting on other people\'s contents',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('user_karma_give_vote_admin_settings'),
+    'access callback' => 'user_access',
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_LOCAL_TASK,
+  );
+  // That's all!
+  return $items;
+}
+
+##################################################################
+#                  START OF SETTINGS FORM
+##################################################################
+
+/**
+ * Return the configuration form. It's quite a form...
+ *
+ * @return
+ *   The config form
+ */
+ 
+function user_karma_give_vote_admin_settings() {
+
+  $form['user_karma_give_vote_description'] = array(
+    '#value' => '<b>'. t('Award karma every time a user casts a vote, regardless of what the vote is. This will encourage users to vote and participate') .'<b>',
+  );
+  
+  $form['user_karma_give_vote_activate'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Activate this karma method'),
+    '#description' => t('This module will only really do anything when this box is ticket. If you decide to disable it, remember to do a karma mass recalculation'),
+    '#default_value' => variable_get('user_karma_give_vote_activate', FALSE),
+  );
+
+  $form['user_karma_give_vote_content_types'] = array(
+    '#type' => 'textfield', 
+    '#description' => t('A comma separated list of content types (as far as VotingAPI is concerned) for which the user will receive karma. Leave empty for ALL'),
+    '#title' => t('VotingAPI content types which will receive karma'),
+    '#size' => 64, 
+    '#maxlength' => 54, 
+    '#default_value' => variable_get('user_karma_give_vote_content_types', 'comment,node'), 
+  );
+
+  $form['user_karma_give_vote_value_types'] = array(
+    '#type' => 'textfield', 
+    '#description' => t('A comma separated list of value types (as far as VotingAPI is concerned) for which the user will receive karma. Leave empty for ALL'),
+    '#title' => t('VotingAPI value types'),
+    '#size' => 64, 
+    '#maxlength' => 54, 
+    '#default_value' => variable_get('user_karma_give_vote_value_types', 'points'), 
+  );
+
+  $form['user_karma_give_vote_point_duration'] = array(
+    '#type' => 'textfield',
+    '#title' => t('How many days karma points are valid for. 0 means forever.'),
+    '#size' => 4,
+    '#maxlength' => 4,
+    '#default_value' => variable_get('user_karma_give_vote_point_duration', 90),
+  );
+
+  $form['user_karma_give_vote_karma_multiplier'] = array(
+    '#type' => 'textfield',
+    '#title' => t('How much karma will be assigned for each vote cast'),
+    '#size' => 4,
+    '#maxlength' => 4,
+    '#default_value' => variable_get('user_karma_give_vote_karma_multiplier', 0.1),
+  );
+
+  return system_settings_form($form);
+}
+
+##################################################################
+#               HOOK TO RETURN A KARMA VALUE
+##################################################################
+
+function user_karma_give_vote_user_karma_partial($uid) {
+  // If the module is not active, then just always return 0
+  if (!variable_get('user_karma_give_vote_activate', FALSE)) {
+    user_karma_msg("This karma plugin is not active. returning '0'");
+    return 0;
+  }
+
+  user_karma_msg("In 'user_karma_give_vote_user_karma_partial' for $uid");
+
+  // Get the number of days
+  $days = variable_get('user_karma_give_vote_point_duration', 90);
+
+  user_karma_msg("$days");
+
+  // Turn the lists SQL-worthy
+  // I don't like the fact that if a user gets it wrong, the module
+  // will end up with a fault SQL query. But hey...
+  $content_types_var = variable_get('user_karma_give_vote_content_types', '');
+  $value_types_var = variable_get('user_karma_give_vote_value_types', '');
+
+  $content_types_array = explode(',',$content_types_var);
+  $value_types_array = explode(',',$value_types_var);
+
+  // Make up the SQL for the content types. Note that there is no
+  // filter if the variable is empty
+  if ($content_types_var == '') {
+    user_karma_msg("The content_types list is empty, not filtering");
+  } 
+  else {
+    user_karma_msg("FILTERING by 'content_types'");
+    $content_types_sql = db_placeholders($content_types_array,'text');
+    $content_types_sql = " AND vv.content_type in ($content_types_sql) ";
+
+  }
+
+  // Make up the SQL for the content types. Note that there is no
+  // filter if the variable is empty
+  if ($value_types_var == '') {
+    user_karma_msg("The value_types list is empty, not filtering");
+  } 
+  else {
+    user_karma_msg("FILTERING by 'value_types'");
+    $value_types_sql = db_placeholders($value_types_array,'text');
+    $value_types_sql = " AND vv.value_type in ($value_types_sql) ";
+  }
+    
+  user_karma_msg("Variable content_types_sql is: $content_types_sql");
+  user_karma_msg("Variable value_types_sql is: $value_types_sql");
+
+  // Set the query
+  $query = "SELECT COUNT(*) FROM {votingapi_vote} vv WHERE vv.uid = %d $content_types_sql $value_types_sql ". user_karma_sql_duration($days, "vv.timestamp");
+
+  user_karma_msg("Query: $query");
+
+  // Return the value, multiplied by the multiplier!
+  $karma= db_result(
+    db_query(
+      $query, 
+      array_merge( array($uid), $content_types_array, $value_types_array)
+    )
+  ) * variable_get('user_karma_give_vote_karma_multiplier', 1);
+
+  user_karma_msg("Returning karma: $karma");
+  return $karma;
+
+  #$karma_from_comments = db_result(db_query($query, $recipient_uid, time()));
+}
+
+function user_karma_give_vote_user_karma_point_duration() {
+
+  user_karma_msg('In user_karma_give_vote_user_karma_point_duration');
+
+  // If the module is disabled, then return NULL. user_karma will
+  // run array_filter to the invoke_all result, so all the NULLs will
+  // be taken off
+  if (!variable_get('user_karma_give_vote_activate', FALSE)) {
+    return NULL;
+  }
+
+  // Return the module's karma duration
+  $return = variable_get('user_karma_give_vote_point_duration', 90);
+  user_karma_msg("Returning $return");
+  return $return;
+
+}
+
+/**
+ * This function is the super-hook for hook_votingapi_update and _insert,
+ * since it's identical as far as karma is concerned. If a node is
+ * voted, this function will trigger the karma recalculation.
+ *
+ * @param $op
+ *   Not really used (yet). It tells the function if it was an
+ *   insert or an update
+ * @param $v
+ *   The vote object
+ * @value
+ *   The vote value. This holds the "new" value of the vote if it was
+     an update, or the inserted value if it was an isert
+ * @return
+ *   The karma amount
+ * 
+ */
+function user_karma_give_vote_user_karma_vote_cast($op, $v, $value) {
+
+  user_karma_msg("In 'user_karma_give_vote_user_karma_vote_cast'");
+
+  // If the module is disabled, then just do nothing.
+  // Note that this could be done a little earlier, but it's just
+  // more convenient to do it here
+  if (!variable_get('user_karma_give_vote_activate', FALSE)) {
+    user_karma_msg("This karma plugin is not active. Not recalculating.");
+    return NULL;
+  }
+
+  # If the value types match, OR if they are empty(which would 
+  # be fine as well), then do the recalculation
+  if (
+    ( in_array($v[0]['content_type'], explode(',', variable_get('user_karma_give_vote_content_types', 'node') ) ) || variable_get('user_karma_give_vote_content_types', '') == '' )&&
+    ( in_array($v[0]['value_type'], explode(',', variable_get('user_karma_give_vote_value_types',   'points') ) ) || variable_get('user_karma_give_vote_value_types',   '') == '')
+  ) {
+    user_karma_msg("Recalculating karma for ". $v->uid);
+    user_karma_calculate_karma($v[0]['uid']);
+ }
+}

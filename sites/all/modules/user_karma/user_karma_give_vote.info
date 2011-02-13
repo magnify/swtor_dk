@@ -1,0 +1,16 @@
+; $Id: user_karma_give_vote.info,v 1.2.2.2.2.1 2008/09/05 09:05:10 sicjoy Exp $
+name = User Karma - give votes plugin
+description = Assign karma if a user votes - ANY vote will do
+package = User Karma
+dependencies[] = user_karma
+dependencies[] = votingapi
+core = "6.x"
+project = "user_karma"
+
+
+; Information added by drupal.org packaging script on 2008-11-26
+version = "6.x-1.0-beta1"
+core = "6.x"
+project = "user_karma"
+datestamp = "1227736850"
+

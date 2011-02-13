@@ -1,0 +1,30 @@
+$Id: INSTALL.txt,v 1.1.2.1 2008/04/16 03:07:29 mercmobily Exp $
+
+User karma - installation
+---------------------------
+
+Unpack the module in your "modules" directory.
+
+INSTALLATION:
+
+1. Place the module in the "modules" directory of your drupal installation
+
+3. Enable this module by navigating to:
+        Administer > Site building > Modules
+
+3a. Enable the plugin modules. They will add functionality to
+    the otherwise useless module :-D The plugins will assign karma for
+    specific events (somebody votes on his/her comment, etc.).
+
+4. Configure your module by going to 
+
+    Administer > Site configuration > User Karma
+
+   The options should be self-explanatory.
+   SUPER-WARNING: don't let this module add/delete roles other than the ones
+   you have created SPECIFICALLY for this module.
+
+
+5. Enjoy!
+
+Tony Mobily

@@ -1,0 +1,25 @@
+<?php
+// $Id: user_karma.install,v 1.1.2.1.2.1 2008/09/05 09:05:10 sicjoy Exp $
+
+/**
+ * @file
+ */
+ 
+/*
+ * Implementation of hook_install().
+ */
+function user_karma_install() {}
+
+/*
+ * Implementation of hook_uninstall().
+ */
+function user_karma_uninstall() {
+  variable_del('user_karma_cron_timestamp');
+  variable_del('user_karma_debug_messages');
+  variable_del('user_karma_eligible_roles');
+  variable_del('user_karma_expire_cron_every');
+  variable_del('user_karma_load_karma_in_profile');
+  variable_del('user_karma_load_rank_in_profile');
+  variable_del('user_karma_show_karma_in_user_page');
+  variable_del('user_karma_show_ranking_in_user_page');
+}

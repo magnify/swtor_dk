@@ -1,0 +1,21 @@
+<?php
+// $Id: user_karma_insert_node.install,v 1.1.2.1.2.1 2008/09/05 09:05:10 sicjoy Exp $
+
+/**
+ * @file
+ */
+ 
+/*
+ * Implementation of hook_install().
+ */
+function user_karma_insert_node_install() {}
+
+/*
+ * Implementation of hook_uninstall().
+ */
+function user_karma_insert_node_uninstall() {
+  variable_del('user_karma_insert_node_activate');
+  variable_del('user_karma_insert_node_karma_multiplier');
+  variable_del('user_karma_insert_node_node_types');
+  variable_del('user_karma_insert_node_point_duration');
+}
