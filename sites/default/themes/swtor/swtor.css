@@ -1603,9 +1603,15 @@ Featured content
 */
 
 .node-type-article-with-image .content .fb-social-like-widget {
-  position: absolute;
   left: 537px;
+  position: absolute;
   top: 12px;
+}
+
+.node-type-forum .forum-post-wrapper .content .fb-social-like-widget {
+    left: 810px;
+    position: absolute;
+    top: 63px;
 }
 
 /*
