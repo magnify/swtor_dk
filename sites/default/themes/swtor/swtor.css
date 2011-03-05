@@ -1701,3 +1701,10 @@ Featured content
   clear: both;
   margin: 15px 0 0;
 }
+
+.block input,
+.node-type-paypal-page input {
+  background: 0;
+  border: 0;
+  width: auto;
+}
