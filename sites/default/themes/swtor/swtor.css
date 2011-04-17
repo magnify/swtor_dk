@@ -46,7 +46,7 @@ a:hover, a:active {
 }
 
 input, textarea, select {
-	background: #3a4c65 url('/sites/default/themes/swtor/gfx/LoginInputBg.png') repeat-x center top;
+	background: #3a4c65 url('gfx/LoginInputBg.png') repeat-x center top;
 	border: 1px solid #323d4e;
 	color: #fff;
 	margin: 0 5px 0 0;
@@ -55,7 +55,7 @@ input, textarea, select {
 }
 
 input:focus, textarea:focus, select:focus {
-	background: #140b07 url('/sites/default/themes/swtor/gfx/LoginInputBg.png') repeat-x center bottom;
+	background: #140b07 url('gfx/LoginInputBg.png') repeat-x center bottom;
 }
 
 textarea, textarea:focus {
@@ -72,7 +72,7 @@ input.form-checkbox {
 }
 
 input.form-submit {
-	background: url('/sites/default/themes/swtor/gfx/ButtonsBg.png') no-repeat 0 -24px;
+	background: url('gfx/ButtonsBg.png') no-repeat 0 -24px;
 	border: 0;
 	cursor: pointer;
 	float: right;
@@ -174,21 +174,32 @@ h1#site-name, div#site-name /* The name of the website */
 	top: 147px;
 }
 
-#header-blocks #block-menu-menu-mainmenu ul.menu {
-	background: url('/sites/default/themes/swtor/gfx/MenuSplitter.png') no-repeat left bottom;
+#block-cutemenu-menu-mainmenu {
+	margin: 0;
+	position: absolute;
+	left: 60px;
+	top: 147px;
+}
+
+#header-blocks #block-menu-menu-mainmenu ul.menu,
+#header-blocks #block-cutemenu-menu-mainmenu ul.menu {
+	background: url('gfx/MenuSplitter.png') no-repeat left bottom;
 	float: left;
 	font-family: Lucida Sans Unicode, trebuchet, arial, sans-serif;
 	margin: 0;
 	padding: 0 0 0 1px;
 }
 
-#header-blocks #block-menu-menu-mainmenu ul.menu li {
-	background: url('/sites/default/themes/swtor/gfx/MenuSplitter.png') no-repeat right bottom;
+#header-blocks #block-menu-menu-mainmenu ul.menu li,
+#header-blocks #block-cutemenu-menu-mainmenu ul.menu li {
+	background: url('gfx/MenuSplitter.png') no-repeat right bottom;
 	padding: 0 1px 0 0;
 }
 
-#header-blocks #block-menu-menu-mainmenu ul.menu a {
-	background: url('/sites/default/themes/swtor/gfx/MenuBg.png') repeat-x 0 bottom;
+#header-blocks #block-menu-menu-mainmenu ul.menu a,
+#header-blocks #block-cutemenu-menu-mainmenu ul.menu,
+#header-blocks #block-cutemenu-menu-mainmenu ul.menu cutemenu-label {
+	background: url('gfx/MenuBg.png') repeat-x 0 bottom;
 	color: #ffcd6c;
 	display: block;
 	font-family: Lucida Sans Unicode;
@@ -197,16 +208,19 @@ h1#site-name, div#site-name /* The name of the website */
 	text-decoration: none;
 }
 
-#header-blocks #block-menu-menu-mainmenu ul.menu a.active {
-	background: url('/sites/default/themes/swtor/gfx/MenuBg.png') repeat-x 0 top;
+#header-blocks #block-menu-menu-mainmenu ul.menu a.active,
+#header-blocks #block-cutemenu-menu-mainmenu ul.menu a.active {
+	background: url('gfx/MenuBg.png') repeat-x 0 top;
 	color: #ffcd6c;
 }
 
-#header-blocks #block-menu-menu-mainmenu ul.menu a:hover {
-	background: url('/sites/default/themes/swtor/gfx/MenuBg.png') repeat-x 0 top;
+#header-blocks #block-menu-menu-mainmenu ul.menu a:hover,
+#header-blocks #block-cutemenu-menu-mainmenu ul.menu a:hover {
+	background: url('gfx/MenuBg.png') repeat-x 0 top;
 }
 
-#block-menu-menu-usermenu ul.menu a {
+#block-menu-menu-usermenu ul.menu a,
+#block-cutemenu-menu-usermenu ul.menu a {
 	color: #ffcd6c;
 	font-family: tahoma;
 	font-size: 100%;
@@ -214,7 +228,8 @@ h1#site-name, div#site-name /* The name of the website */
 	text-decoration: none;	
 }
 
-#block-menu-menu-usermenu ul.menu a:hover {
+#block-menu-menu-usermenu ul.menu a:hover,
+#block-cutemenu-menu-usermenu ul.menu a:hover {
 	color: #ffcd6c;
 }
 
@@ -224,7 +239,8 @@ h1#site-name, div#site-name /* The name of the website */
 	width: 104px;
 }
 
-#header-blocks #block-menu-menu-mainmenu ul.menu li {
+#header-blocks #block-menu-menu-mainmenu ul.menu li,
+#header-blocks #block-cutemenu-menu-mainmenu ul.menu li {
 	text-align: center;
 	width: 99px;
 }
@@ -238,7 +254,7 @@ h1#site-name, div#site-name /* The name of the website */
 }
 
 #main-inner {
-	background: url('/sites/default/themes/swtor/gfx/MainInnerBg.png') left top;
+	background: url('gfx/MainInnerBg.png') left top;
 	border: 1px solid #0f1010;
 	-moz-border-radius: 8px;
 	border-radius: 8px;
@@ -486,7 +502,7 @@ div.tabs /* See also the tabs.css file. */
 }
 
 #content h1, #content .node-type-article-with-image h2, #content .node-type-article-with-image .meta, #content .node-type-article-with-image .content {
-	background: url('/sites/default/themes/swtor/gfx/ContentBg.png') left top;
+	background: url('gfx/ContentBg.png') left top;
 	border: 1px solid #0f1010;
 	-moz-border-radius: 8px;
 	border-radius: 8px;
@@ -514,7 +530,7 @@ div.tabs /* See also the tabs.css file. */
 }
 
 #content .node-type-article-with-image .content blockquote, #content .node-type-article-with-image .meta blockquote {
-	background: url('/sites/default/themes/swtor/gfx/quote.gif') no-repeat top left;
+	background: url('gfx/quote.gif') no-repeat top left;
 	clear: both;
 	font-size: 100%;
 	margin: 35px;
@@ -616,7 +632,7 @@ ul.links.inline {
 
 ul.links li,
 .forum-links li {
-  background: #5cb441 url('/sites/default/themes/swtor/gfx/button-bg.gif') repeat-x;
+  background: #5cb441 url('gfx/button-bg.gif') repeat-x;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   border-radius: 4px;
@@ -763,7 +779,7 @@ ul.forum-links {
 
 .comment .user-signature,
 .comment .author-signature {
-	background: url('/sites/default/themes/swtor/gfx/DashedHori.png') repeat-x top left;
+	background: url('gfx/DashedHori.png') repeat-x top left;
   color: #666;
   font-size: 90%;
   margin: 15px 0 0;
@@ -868,7 +884,7 @@ ul.forum-links {
 }
 
 .block-aggregator li, #sidebar-right .block li {
-	background: url('/sites/default/themes/swtor/gfx/ListDot.png') no-repeat 0 5px;
+	background: url('gfx/ListDot.png') no-repeat 0 5px;
 	list-style: none;
 	padding: 0 0 0 15px;
 }
@@ -1017,7 +1033,7 @@ ul.forum-links {
 }
 
 #header-blocks #user-login-form input {
-	background: #263041 url('/sites/default/themes/swtor/gfx/LoginInputBg.png') repeat-x center bottom;
+	background: #263041 url('gfx/LoginInputBg.png') repeat-x center bottom;
 	border: 1px solid #323d4e;
 	color: #fff;
 	margin: 0 5px 0 0;
@@ -1026,11 +1042,11 @@ ul.forum-links {
 }
 
 #header-blocks #user-login-form input:focus {
-	background: #140b07 url('/sites/default/themes/swtor/gfx/LoginInputBg.png') repeat-x center top;
+	background: #140b07 url('gfx/LoginInputBg.png') repeat-x center top;
 }
 
 #header-blocks #user-login-form input.form-submit {
-	background: url('/sites/default/themes/swtor/gfx/ButtonsBg.png') no-repeat 0 0;
+	background: url('gfx/ButtonsBg.png') no-repeat 0 0;
 	border: 0;
 	color: #d1e2cc;
 	cursor: pointer;
@@ -1098,7 +1114,7 @@ td.active {
 }
 
 html.js fieldset.collapsible legend a {
-	background: url('/sites/default/themes/swtor/gfx/menu-expanded.png') no-repeat 2px 6px;
+	background: url('gfx/menu-expanded.png') no-repeat 2px 6px;
 }
 
 #content tr.even td, #content tr.odd td {
@@ -1174,7 +1190,7 @@ li a.active /* The active item in a Drupal menu */
 * styling of list items.
 */
 #user-login-form ul, #block-menu-menu-usermenu ul.menu /* OpenID creates a new ul above the login form's links. */ {
-	background: url('/sites/default/themes/swtor/gfx/MainInnerBg.png') left top;
+	background: url('gfx/MainInnerBg.png') left top;
 	border: 1px solid #0f1010;
 	-moz-border-radius: 8px;
 	border-radius: 8px;
@@ -1237,39 +1253,39 @@ form thead th
  /* tabs */
 
 ul.primary {
-	background: url('/sites/default/themes/swtor/gfx/tab-bar.png') repeat-x left bottom;
+	background: url('gfx/tab-bar.png') repeat-x left bottom;
 	color: #ffcd6c;
 	font-size: 90%;
 }
 
 ul.primary li a {
-	background: url('/sites/default/themes/swtor/gfx/tab-left.png') no-repeat left -38px;
+	background: url('gfx/tab-left.png') no-repeat left -38px;
 	color: #ffcd6c;
 	font-weight: normal;
 }
 
 ul.primary li a .tab {
-	background: url('/sites/default/themes/swtor/gfx/tab-right.png') no-repeat right -38px;
+	background: url('gfx/tab-right.png') no-repeat right -38px;
 	color: #ffcd6c;
 }
 
 ul.primary li a:hover {
-	background: url('/sites/default/themes/swtor/gfx/tab-left.png') no-repeat left -76px;
+	background: url('gfx/tab-left.png') no-repeat left -76px;
 	color: #ffcd6c;
 }
 
 ul.primary li a:hover .tab {
-	background: url('/sites/default/themes/swtor/gfx/tab-right.png') no-repeat right -76px;
+	background: url('gfx/tab-right.png') no-repeat right -76px;
 	color: #ffcd6c;
 }
 
 ul.primary li.active a, ul.primary li.active a:hover {
-	background: url('/sites/default/themes/swtor/gfx/tab-left.png') no-repeat left 0;
+	background: url('gfx/tab-left.png') no-repeat left 0;
 	color: #ffcd6c;
 }
 
 ul.primary li.active a .tab, ul.primary li.active a:hover .tab {
-	background: url('/sites/default/themes/swtor/gfx/tab-right.png') no-repeat right 0;
+	background: url('gfx/tab-right.png') no-repeat right 0;
 }
 
 /* advanced forum */
@@ -1281,7 +1297,7 @@ ul.primary li.active a .tab, ul.primary li.active a:hover .tab {
 #forum .forum-topics th a:link,
 #forum .forum-topics th a:hover,
 #forum .forum-topics th a:visited {
-	background: url('/sites/default/themes/swtor/gfx/MainInnerBg.png') left top;
+	background: url('gfx/MainInnerBg.png') left top;
 	color: #ffffff;
 	font-weight: bold;
 }
@@ -1304,7 +1320,7 @@ ul.primary li.active a .tab, ul.primary li.active a:hover .tab {
 }
 
 #forum-statistics-header {
-	background: url('/sites/default/themes/swtor/gfx/MainInnerBg.png') left top;
+	background: url('gfx/MainInnerBg.png') left top;
 }
 
 #forum-statistics {
@@ -1414,7 +1430,7 @@ ul.primary li.active a .tab, ul.primary li.active a:hover .tab {
 
 div.messages, div.status, div.warning, div.error {
 	background-color: #11151D;
-	background-image: url('/sites/default/themes/swtor/gfx/messages-status.png');
+	background-image: url('gfx/messages-status.png');
 	border: 1px solid #3D4964;
 	color: #fff;
 }
