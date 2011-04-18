@@ -1,0 +1,14 @@
+/*
+ * $Id: fix-ie.css,v 1.1.2.2 2009/09/30 08:55:04 alexiswilke Exp $
+ *
+ * CSS used with IE 6.x to get CuteMenu to work
+ */
+
+
+.cutemenu-baritem-content {
+  width: 120px;
+}
+.cutemenu-baritem-label {
+  text-align: center;
+}
+

@@ -1,0 +1,97 @@
+<?php
+// $Id: cutemenu.install,v 1.4.2.3 2010/04/04 23:43:59 alexiswilke Exp $
+
+/*
+ * hook_install();
+ */
+function cutemenu_install() {
+  drupal_install_schema('cutemenu');
+  drupal_set_message(t('Cute Menu installed'));
+}
+
+/*
+ * hook_uninstall()
+ */
+function cutemenu_uninstall() {
+  drupal_uninstall_schema('cutemenu');
+  drupal_set_message(t('Cute Menu uninstalled'));
+}
+
+/*
+ * hook_schema()
+ */
+function cutemenu_schema() {
+  $schema['cutemenu_block'] = array(
+    'fields' => array(
+      'menu_name' => array(
+        'type' => 'text',
+        'required' => TRUE,
+        'description' => 'The name of the menu such as primary-menu in D6',
+      ),
+      'hide_menu_without_submenus' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Whether the menu entries without any sub-menus are to be shown',
+      ),
+      'top_menu_use_links' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Whether the top menu entries should also be links',
+      ),
+      'top_menu_use_css' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+        'default' => 1,
+        'description' => 'Whether the top menu entries make use of its CSS (if not show as "normal" in current theme)',
+      ),
+    ),
+    //'primary key' => array('menu_name'), -- this fails under MySQL (don't ask!)
+    'description' => 'Table to hold the flags used to know whether sub-menus should be shown. We do not use a variable because we want to be able to delete the data when the module is being uninstalled.',
+  );
+  $schema['cutemenu_menu_item'] = array(
+    'fields' => array(
+      'mlid' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'required' => TRUE,
+        'description' => 'The name of the menu such as primary-menu in D6',
+      ),
+      'menu_role' => array(
+        'type' => 'text',
+        'not null' => TRUE,
+        'required' => TRUE,
+        //'default' => 'normal', -- this fails under MySQL (really weird if you ask me!)
+        'description' => 'Defines the role that this item is supposed to take in the Cute Menu. Valid values are: normal, header, footer.',
+      ),
+    ),
+    'primary key' => array('mlid'),
+    'description' => 'Table to hold the extra menu item setups.',
+  );
+
+  return $schema;
+}
+
+
+/*
+ * update_hook()
+ */
+function cutemenu_update_6000() {
+  $ret = array();
+  db_add_field($ret, 'cutemenu_block', 'top_menu_use_css', array(
+      'type' => 'int',
+      'size' => 'tiny',
+      'not null' => TRUE,
+      'default' => 1,
+      'description' => 'Whether the top menu entries make use of its CSS (if not show as "normal" in current theme)',
+    )
+  );
+
+  return $ret;
+}
+
+// vim: ts=2 sw=2 et syntax=php

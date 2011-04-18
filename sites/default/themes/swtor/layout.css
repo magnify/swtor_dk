@@ -19,11 +19,11 @@
 
 /** body **/
 html {
-	background: #131c2e url('/sites/default/themes/swtor/gfx/BodyBg.gif') repeat-x left top;
+	background: #131c2e url('gfx/BodyBg.gif') repeat-x left top;
 }
 
 body {
-	background: url('/sites/default/themes/swtor/gfx/Background.jpg') no-repeat center top;
+	background: url('gfx/Background.jpg') no-repeat center top;
 }
 
 iframe body {
@@ -257,7 +257,7 @@ h4, h4 a, h4 a:link, h4 a:visited {
 /** sidebar-left **/
   #sidebar-left
   {
-	background: url('/sites/default/themes/swtor/gfx/ContentBg.png') left top;
+	background: url('gfx/ContentBg.png') left top;
     float: left;
     width: 215px;
     margin-left: 0;
@@ -273,7 +273,7 @@ h4, h4 a, h4 a:link, h4 a:visited {
 
 /** sidebar-right **/
   #sidebar-right {
-	background: url('/sites/default/themes/swtor/gfx/ContentBg.png') left top;
+	background: url('gfx/ContentBg.png') left top;
 	border: 1px solid #0f1010;
 	-moz-border-radius: 8px;
 	border-radius: 8px;

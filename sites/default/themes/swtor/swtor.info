@@ -31,6 +31,7 @@ stylesheets[all][]   = html-elements.css
 ; stylesheets[all][] = block-editing.css
 ; stylesheets[all][] = wireframes.css
 stylesheets[all][]   = swtor.css
+stylesheets[all][]   = cutemenu.css
 stylesheets[print][] = print.css
   ; To prevent stylesheets of a base theme or of a module from being included in
   ; our sub-theme, we specify it in our .info file (and we don't need to have a
