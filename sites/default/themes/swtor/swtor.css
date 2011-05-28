@@ -591,6 +591,14 @@ div.tabs /* See also the tabs.css file. */
 {
 }
 
+.author-online {
+  background-image: url('../gfx/user-offline.png');
+}
+
+.author-offline {
+  background-image: url('../gfx/user-offline.png');
+}
+
 .node.node-unpublished .picture,
 .comment.comment-unpublished .picture
 {
