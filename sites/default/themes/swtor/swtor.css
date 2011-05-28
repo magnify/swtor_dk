@@ -591,8 +591,8 @@ div.tabs /* See also the tabs.css file. */
 {
 }
 
-.author-offline {
-  background-image: url('gfx/user-offline.png');
+.author-online {
+  background-image: url('gfx/user-online.png');
 }
 
 .author-offline {
