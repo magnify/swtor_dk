@@ -1,0 +1,12 @@
+; $Id: mibbit_irc.info,v 1.1.4.2 2010/04/11 01:40:53 kmillecam Exp $
+name = Mibbit IRC
+description = Allows users to participate in IRC chats via a web page in the community.
+core = 6.x
+package = Other
+
+; Information added by drupal.org packaging script on 2010-05-09
+version = "6.x-1.6"
+core = "6.x"
+project = "mibbit_irc"
+datestamp = "1273426809"
+
