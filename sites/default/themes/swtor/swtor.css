@@ -1716,9 +1716,14 @@ Featured content
   background: transparent;
 }
 
-.quote-msg {
+.quote-msg,
+.bb-quote {
   background-color: #333333;
   border: 1px solid #666666;
+}
+
+.bb-quote {
+  padding: 10px 10px 0 10px;
 }
 
 .block block-adsense {
