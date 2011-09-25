@@ -1,0 +1,38 @@
+<?php
+// $Id: mibbit_irc.install,v 1.1.4.6 2010/04/11 01:40:53 kmillecam Exp $
+
+/**
+ * @file
+ * Install file for Mibbit IRC module
+ */
+
+/**
+ * Implementation of hook_install().
+ */
+function mibbit_irc_install() {
+  drupal_set_message(t('Mibbit IRC has been successfully installed.'));
+  drupal_set_message(t('You can configure the module on the <a href="@url">Mibbit IRC settings page</a>.', array('@url' => url('admin/settings/mibbitirc'))));
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function mibbit_irc_uninstall() {
+  variable_del('mibbit_irc_welcome');
+  variable_del('mibbit_irc_page_title');
+  variable_del('mibbit_irc_server');
+  variable_del('mibbit_irc_channel');
+  variable_del('mibbit_irc_width');
+  variable_del('mibbit_irc_height');
+  variable_del('mibbit_irc_custom_prompt');
+  variable_del('mibbit_irc_custom_loading');
+  variable_del('mibbit_irc_help');
+}
+
+/**
+ * Implementation of hook_update().
+ */
+function mibbit_irc_update_1() {
+  // Clear cached menu items.
+  menu_rebuild();
+}

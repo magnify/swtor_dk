@@ -1,0 +1,57 @@
+<?php
+
+/* Fill in the blanks with dummy users */
+function cenix_migration_update_6000() {
+  $ret = array();
+  $result = db_query("SELECT uid FROM {users}");
+  
+  $users = array();
+  while ($user = db_fetch_object($result)) {
+    $users[] = $user->uid;
+  }
+  for ($i = 0; $i <= count($users); $i++) {
+    if (!in_array($i, $users)) {
+      $ret[] = db_query("INSERT INTO {users} (uid, name, mail) VALUES (%d, '%s', '%s')", $i, "dummy_user_" . $i, "dummy_user_" . $i . "@swtor.dk");
+    }
+  }
+  return $ret;
+}
+
+/* Fix users missing an e-mail address */
+function cenix_migration_update_6001() {
+  $ret = array();
+  $result = db_query("SELECT uid FROM {users} WHERE mail = '' AND uid > 0");
+  
+  $users = array();
+  while ($user = db_fetch_object($result)) {
+    $ret[] = db_query("UPDATE {users} SET mail = 'mail_missing_%d@swtor.dk' WHERE uid = %d", $user->uid, $user->uid);
+  }
+  return $ret;
+}
+
+/* fix the wrong admin user */
+function cenix_migration_update_6002() {
+  $ret = array();
+  $ret[] = db_query("UPDATE {users} SET name = 'admin_1' WHERE name = 'admin'");
+  return $ret;
+}
+
+/* Fill in the blanks with dummy nodes */
+function cenix_migration_update_6003() {
+  $ret = array();
+  $result = db_query("SELECT nid FROM {node}");
+  
+  $nodes = array();
+  while ($node = db_fetch_object($result)) {
+    $nodes[] = $node->nid;
+  }
+  for ($i = 1; $i <= count($nodes); $i++) {
+    if (!in_array($i, $nodes)) {
+      $ret[] = db_query("INSERT INTO {node} (nid, vid, type, language, title, uid, status, created, changed) VALUES (%d, %d, '%s', '%s', '%s', %d, %d, %d, %d)", $i, $i, "story", "da", "dummy_node_" . $i, 1, 0, mktime(), mktime());
+    }
+  }
+  return $ret;
+}
+
+
+?>
