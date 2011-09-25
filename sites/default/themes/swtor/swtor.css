@@ -1737,3 +1737,89 @@ Featured content
   border: 0;
   width: auto;
 }
+
+/* Countdown */
+
+#block-block-14 {
+  margin: 0;
+  padding: 0 0 0;
+  width: 210px;
+}
+
+#block-block-14 .content .jquery-countdown {
+  background-image: url('gfx/countdown-background.png');
+  background-position: center 50px;
+  background-repeat: no-repeat;
+  height: 123px;
+  padding: 0;
+}
+
+#block-block-14 .content .jquery-countdown .countdown_row {
+  color: #a9a9a9;
+  display: block;
+  font-weight: bold;
+  line-height: 165%;
+  height: 125px;
+  overflow: hidden;
+  padding: 0 2px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+#block-block-14 .content .jquery-countdown .countdown_row .countdown_section {
+  font-size: 75%;
+  margin: 55px 0 0;
+  padding: 0;
+  position: absolute;
+  text-align: center;
+  top: 7px;
+  width: 66px;
+}
+
+#block-block-14 .content .jquery-countdown .countdown_row .countdown_section span {
+  color: #fff;
+  font-size: 250%;
+  letter-spacing: 18px;
+  line-height: 100%;
+  width: 66px;
+}
+
+#block-block-14 .content .jquery-countdown .countdown_row .countdown_section div.days,
+#block-block-14 .content .jquery-countdown .countdown_row .countdown_section div.hours,
+#block-block-14 .content .jquery-countdown .countdown_row .countdown_section div.minutes {
+  text-align: left;
+}
+
+#block-block-14 .content .jquery-countdown .countdown_row .countdown_section div.days {
+  padding: 10px 0 0 13px;
+}
+
+#block-block-14 .content .jquery-countdown .countdown_row .countdown_section div.hours {
+  padding: 10px 0 0 10px;
+}
+
+#block-block-14 .content .jquery-countdown .countdown_row .countdown_section div.minutes {
+  padding: 10px 0 0 5px;
+}
+
+#block-block-14 .content .jquery-countdown .countdown_row .countdown_section.first {
+  left: 10px;
+}
+
+#block-block-14 .content .jquery-countdown .countdown_row .countdown_section.second {
+  left: 81px;
+}
+
+#block-block-14 .content .jquery-countdown .countdown_row .countdown_section.third {
+  left: 152px;
+}
+
+#block-block-14 .content .jquery-countdown .countdown_row.countdown_descr {
+  font-size: 110%;
+  margin: 5px 0 0;
+  padding: 0 18px 0 0;
+  text-align: left;
+  text-transform: none;
+  width: auto;
+}
