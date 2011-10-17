@@ -566,6 +566,11 @@ div.tabs /* See also the tabs.css file. */
 	margin: 0 0 10px;
 }
 
+#content .node-type-article-with-image .field-field-image-gallery .field-item {
+        float: left;
+        margin: 0 4px 4px 0;
+}
+
 /* All nodes are given a node-type-FOO class that describes the type of
 * content that it is. If you create a new content type called
 * "my-custom-type", it will receive a "node-type-my-custom-type" class.
