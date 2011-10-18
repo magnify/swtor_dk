@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * @file 
+ */
+
+/**
+ * Implementation of hook_uninstall() 
+ */
+function imce_watermark_uninstall() {
+  variable_del('imce_watermark_imagecache_preset');
+  variable_del('imce_watermark_file');
+  variable_del('imce_watermark_horizontal_position');
+  variable_del('imce_watermark_vertical_position');
+  variable_del('imce_watermark_vertical_margin');
+  variable_del('imce_watermark_horizontal_margin');
+  variable_del('imce_watermark_alpha');
+}

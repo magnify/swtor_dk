@@ -1,0 +1,11 @@
+name = IMCE Watermark
+description = Adding watermark at IMCE image uploading.
+core = "6.x"
+dependencies[] = imce
+
+; Information added by drupal.org packaging script on 2011-07-01
+version = "6.x-2.0"
+core = "6.x"
+project = "imce_watermark"
+datestamp = "1309527415"
+
