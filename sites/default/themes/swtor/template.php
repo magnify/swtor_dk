@@ -160,3 +160,11 @@ function swtor_preprocess_block(&$vars, $hook) {
   $vars['sample_variable'] = t('Lorem ipsum.');
 }
 // */
+
+function swtor_preprocess_page(&$vars) {
+  // Add Google Apps verification
+  drupal_set_html_head('<meta name="google-site-verification" content="9mZIbMFDRNtMAQP0fP2wU75y0JkYjLIs_bLJzosRlwE" />');
+  
+  // Make sure $head is updated in page.tpl.php see: http://api.drupal.org/api/drupal/includes--common.inc/function/drupal_set_html_head/6#comment-4614.
+  $vars['head'] = drupal_get_html_head();
+}
