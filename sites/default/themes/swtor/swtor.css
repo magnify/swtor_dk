@@ -364,6 +364,13 @@ div.tabs /* See also the tabs.css file. */
 
 #content-bottom /* Wrapper for any blocks placed in the "content bottom" region */
 {
+  clear: both;
+  padding: 25px 0 0;
+  text-align: center;
+}
+
+#content-bottom .block-adsense_managed {
+  margin: 0 auto;
 }
 
 /** navbar **/
