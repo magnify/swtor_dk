@@ -165,7 +165,8 @@ function swtor_preprocess_page(&$vars) {
   // Add Google Apps verification
   drupal_set_html_head('<meta name="google-site-verification" content="9mZIbMFDRNtMAQP0fP2wU75y0JkYjLIs_bLJzosRlwE" />');
   drupal_set_html_head('<script type="text/javascript" src="http://s3.r2-db.com/powered.js"></script>');
-  drupal_set_html_head('<script type="text/javascript" src="http://db.darthhater.com/js/extooltips.js"></script> ');
+  drupal_set_html_head('<script type="text/javascript" src="http://db.darthhater.com/js/extooltips.js"></script>');
+  drupal_set_html_head('<script type="text/javascript" src="http://tor.zamimg.com/tooltips.js"></script>');
   
   // Make sure $head is updated in page.tpl.php see: http://api.drupal.org/api/drupal/includes--common.inc/function/drupal_set_html_head/6#comment-4614.
   $vars['head'] = drupal_get_html_head();
